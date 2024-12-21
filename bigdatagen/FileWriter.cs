@@ -6,8 +6,16 @@ using CsvHelper.TypeConversion;
 public static class FileWriter
 {
 
+    public static void CheckAndCreateDirectory(){
+        if(!Directory.Exists("./files"))
+        {
+            Directory.CreateDirectory("./files");
+        }
+    }
+
     public static void TryWriteOrAppendToFile<T>(IEnumerable<T> data)
     {
+        CheckAndCreateDirectory();
         if(FileExists())
         {
             AppendToFile(data);
