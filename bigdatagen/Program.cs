@@ -1,9 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Bogus;
 
-Console.WriteLine("Hello, World!");
-
-
 int totalTransactionLoops = 750;
 for (int i = 0; i < totalTransactionLoops; i++)
 {

@@ -13,6 +13,12 @@ public static class FileWriter
         }
     }
 
+    /// <summary>
+    /// Try to write to a file, if the file exists, append to it.
+    /// If the file does not exist, create it and write to it.
+    /// </summary>
+    /// <param name="data"></param>
+    /// <typeparam name="T"></typeparam>
     public static void TryWriteOrAppendToFile<T>(IEnumerable<T> data)
     {
         CheckAndCreateDirectory();
@@ -40,7 +46,7 @@ public static class FileWriter
             using (var writer = new StreamWriter("./files/transactions.csv"))
             using (var csv = new CsvWriter(writer, config))
             {
-                var options = new TypeConverterOptions { Formats = new[] { "MM/dd/yyyy" } };
+                var options = new TypeConverterOptions { Formats = ["dd/MM/yyyy"] };
                 csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);          
                 csv.WriteRecords(data);
             }
@@ -66,7 +72,7 @@ public static class FileWriter
             using (var writer = new StreamWriter(stream))
             using (var csv = new CsvWriter(writer, config))
             {
-                var options = new TypeConverterOptions { Formats = new[] { "MM/dd/yyyy" } };
+                var options = new TypeConverterOptions { Formats = ["dd/MM/yyyy"] };
                 csv.Context.TypeConverterOptionsCache.AddOptions<DateTime>(options);       
                 csv.WriteRecords(data);
             }
