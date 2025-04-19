@@ -54,13 +54,14 @@ public static class FileWriter
         catch(Exception e)
         {
             // Log error
+            Console.WriteLine($"Error writing to file: {e.Message}");
         }
     }
 
     static void AppendToFile<T>(IEnumerable<T> data)
     {
         try{
-            // Append to the file.
+            // Configure the CSV writer
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 // Don't write the header again.
@@ -80,9 +81,17 @@ public static class FileWriter
         catch(Exception e)
         {
             // Log error
+            Console.WriteLine($"Error appending to file: {e.Message}");
         }
     }
 
+    /// <summary>
+    /// Check if the file exists.
+    /// If the file exists, return true.
+    /// If the file does not exist, return false.
+    /// This is used to determine if we need to write the header or not.
+    /// </summary>
+    /// <returns></returns>
     static bool FileExists()
     {
         if(File.Exists("./files/transactions.csv"))
