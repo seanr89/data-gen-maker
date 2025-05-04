@@ -1,10 +1,11 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Bogus;
+﻿using Bogus;
 
 await Main();
 
+/// <summary>
+/// Main App Runner function
+/// </summary>
+/// <returns></returns>
 static async Task Main()
 {
     // Get the number of available worker threads in the thread pool.
@@ -41,7 +42,11 @@ static async Task Main()
     Console.ReadKey(); // Keep the console window open.
 }
 
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name="state"></param>
+/// <returns></returns>
 static async Task WorkerThreadAsync(object state)
 {
     // Convert the state object to the expected type.  In this case, an integer.
