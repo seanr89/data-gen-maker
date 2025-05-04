@@ -32,7 +32,7 @@ static async Task Main()
 
     // Get the current number of active threads in the thread pool after adding tasks.
     ThreadPool.GetAvailableThreads(out availableWorkerThreads, out availableCompletionPortThreads);
-    Console.WriteLine($"Available worker threads after queueing: {availableWorkerThreads}, completion port threads: {availableCompletionPortThreads}");
+    //Console.WriteLine($"Available worker threads after queueing: {availableWorkerThreads}, completion port threads: {availableCompletionPortThreads}");
 
     // Wait for all tasks to complete using Task.WhenAll.
     Console.WriteLine("Waiting for tasks to complete...");
@@ -59,13 +59,13 @@ static async Task WorkerThreadAsync(object state)
         //await Task.Delay(2000); // Wait for 2 seconds asynchronously.
         await Task.Run(() =>
         {
-            int totalRecordCount = 500000;
-            int batchSize = 10000;
+            int totalRecordCount = 5000000;
+            int batchSize = 20000;
             int batchCount = totalRecordCount / batchSize;
             for (int i = 0; i < batchCount; i++)
             {
                 // Simulate processing each batch
-                Console.WriteLine($"Processing batch {i + 1} of {batchCount} in task {taskNumber}");
+                //Console.WriteLine($"Processing batch {i + 1} of {batchCount} in task {taskNumber}");
                 var transactions = CreateTransactions(batchSize);
                 FileWriter.TryWriteOrAppendToFile(transactions, $"transactions_{taskNumber}.csv");
             }
